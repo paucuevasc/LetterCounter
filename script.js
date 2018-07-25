@@ -1,24 +1,19 @@
 
-var lettersArray=[];
-var letter;
-var i;
-var a;
-var classificatorId;
+
 var mapa=new Map();
 
-function arrayAct(){  
+
+function arrayAct(letter){  
     if (mapa.has(letter)!=true){
         mapa.set(letter, 1);
     }
     else{
         var b=mapa.get(letter);
-       mapa.set(letter, ++b); 
+        mapa.set(letter, ++b); 
     }
-    lettersArray[i]=letter;
-    i++; 
     }
 
-function noNumbers(){
+function noNumbers(letter){
     if (letter==" "){
        console.log("Ups! A white space"); 
     }
@@ -26,48 +21,42 @@ function noNumbers(){
     alert("YOU CAN'T PUT NUMBERS ON YOUR NAME, are you a robot?") 
     }
 }
+
 function nameCounter(){
-var vocals=["a","e","i","o","u","A","E","I","O","U"];
-var name = document.getElementById("nameInput").value;
-console.log(name);   
-
-var nameLength=name.length;
-console.log(nameLength);
+    var vocals=["a","e","i","o","u","A","E","I","O","U"];
+    var name = document.getElementById("nameInput").value;
+        console.log(name);   
+    var nameLength=name.length;
+        console.log(nameLength);
     
-i=0;
-  
-while (i<nameLength) {
+   var i=0;
+    var nameArray=name.split("");
+    while (i<nameLength) {
 
-    letter=name.substr(i,1);
-    a=0;
-    classificatorId=false;
-    while ((a<vocals.length)&&(classificatorId==false)){
-        if (isNaN(letter)!=true){
-             noNumbers(); 
-            classificatorId=true;
-     
-            
+       var letter=nameArray[i];
+        var a=0;
+        var classificatorId=false;
+        while ((a<vocals.length)&&(classificatorId==false)){
+            if (isNaN(letter)!=true){
+                noNumbers(letter); 
+                classificatorId=true;        
+            }
+            else if (letter==vocals[a]) {   
+                classificatorId=true;
+                  
+            }  
+            a++;
         }
-        else if (letter==vocals[a]) {   
-            classificatorId=true;
-                 console.log(letter+"es una vocal");
-            
-        }  
-        else {
-
-        
-        } 
-        a++;
-       
-    }
-   if (classificatorId==false) {
-      console.log(letter+"es una consonant");  
-   }
-    arrayAct();
-
-    a=0;
-}    
-console.log(lettersArray);
-console.log(mapa);    
+        if (classificatorId==false) {
+            console.log(letter+" es una consonant");  
+        } else {
+              console.log(letter+" es una vocal");
+        }
+        arrayAct(letter);
+        i++;
+        a=0;
+    }    
+        console.log(nameArray);
+        console.log(mapa);    
 }
 
